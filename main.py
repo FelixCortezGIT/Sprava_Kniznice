@@ -1,17 +1,3 @@
-# PRIDAVANIE NOVYCH KNIH
-# MAZANIE
-# VYHLADAVANIE
-# AKTUALIZACIA
-
-# REGISTRACIA CLENOV
-# MAZANIE
-# VYHLADAVANIE
-
-# MOZNOST VYPOZICAT KNIHU
-# MOZNOST NAVRATIT
-# ZOBRAZENIE HISTORIE VYPOZICIEK
-# REMINDER
-
 from dotenv import load_dotenv
 import os, psycopg2
 
@@ -24,11 +10,10 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-with open("query1.sql", "r", encoding="utf-8") as file:
-    sql = file.read()
-
-cursor.execute(sql)
-conn.commit()
+# with open("Query_1.sql", "r", encoding="utf-8") as file:
+#     sql = file.read()
+# cursor.execute(sql)
+# conn.commit()
 
 cursor.execute("SELECT * FROM books LIMIT 5")
 books = cursor.fetchall()

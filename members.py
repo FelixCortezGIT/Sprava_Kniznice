@@ -1,0 +1,5 @@
+# REGISTRACIA CLENOV
+# MAZANIE
+# VYHLADAVANIE
+
+class Member:
