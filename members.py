@@ -24,8 +24,3 @@ class Member:
             OR email ILIKE %s
         """, (f"%{key}%", f"%{key}%", f"%{key}%"))
         return self.cursor.fetchall()
-        # if results:
-        #     for riadok in results:
-        #         print(riadok)
-        # else:
-        #     print("clen nenajdeny")

@@ -26,11 +26,6 @@ class Book:
             OR g.name ILIKE %s
         """, (f"%{kluc}%", f"%{kluc}%", f"%{kluc}%"))
         return self.cursor.fetchall()
-        # if results:
-        #     for riadok in results:
-        #         print(riadok)
-        # else:
-        #     print("kniha nebola najdena")
 
     def update(self, book_id, title=None, author_id=None, genre_id=None, isbn=None, publication_year=None, copies=None):
         fields = []
