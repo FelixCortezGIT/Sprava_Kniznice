@@ -1,7 +1,3 @@
-# REGISTRACIA CLENOV
-# MAZANIE
-# VYHLADAVANIE
-
 class Member:
     def __init__(self, cursor, conn):
         self.cursor = cursor
