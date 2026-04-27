@@ -16,7 +16,7 @@ book = Book(cursor, conn)
 member = Member(cursor, conn)
 loan = Loan(cursor, conn)
 
-# book.search("slabikar")
+# book.search("Cesta bojovníka")
 # # book.add("Slabikar", 1, 2, 9780000000099, 2026, 3)
 # book.search("slabikar")
 # book.update(106, title="Zahradkar", copies=5)
@@ -31,10 +31,12 @@ loan = Loan(cursor, conn)
 # member.delete("44")
 # member.search("macula")
 
-loan.search(3)
-loan.borrow(15, 3, "2026-04-27")
-loan.search(3)
-# loan.return_book(15)
+results = loan.search(3)
+print(results)
+
+# loan.borrow(15, 3, "2026-05-27")
+# loan.search(3)
+# loan.return_book(96)
 # loan.search(3)
 
 # with open("Query_1.sql", "r", encoding="utf-8") as file:

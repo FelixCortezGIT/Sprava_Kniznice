@@ -9,11 +9,12 @@ class Book:
             VALUES (%s, %s, %s, %s, %s, %s)
         """, (title, author_id, genre_id, isbn, publication_year, copies))
         self.conn.commit()
-        print(f"kniha {title} bola pridana do zoznamu")
+        return self.cursor.rowcount
 
     def delete(self, book_id):
         self.cursor.execute("DELETE FROM books WHERE book_id = %s", (book_id,))
         self.conn.commit()
+        return self.cursor.rowcount
 
     def search(self, kluc):
         self.cursor.execute("""
@@ -24,39 +25,33 @@ class Book:
             OR a.name ILIKE %s
             OR g.name ILIKE %s
         """, (f"%{kluc}%", f"%{kluc}%", f"%{kluc}%"))
-        results = self.cursor.fetchall()
-        if results:
-            for riadok in results:
-                print(riadok)
-        else:
-            print("kniha nebola najdena")
+        return self.cursor.fetchall()
+        # if results:
+        #     for riadok in results:
+        #         print(riadok)
+        # else:
+        #     print("kniha nebola najdena")
 
     def update(self, book_id, title=None, author_id=None, genre_id=None, isbn=None, publication_year=None, copies=None):
         fields = []
         values = []
-        if title:
-            fields.append("title = %s")
-            values.append(title)
-        if author_id is not None:
-            fields.append("author_id = %s")
-            values.append(author_id)
-        if genre_id is not None:
-            fields.append("genre_id = %s")
-            values.append(genre_id)
-        if isbn:
-            fields.append("isbn = %s")
-            values.append(isbn)
-        if publication_year is not None:
-            fields.append("publication_year = %s")
-            values.append(publication_year)
-        if copies is not None:
-            fields.append("copies = %s")
-            values.append(copies)
+        data = {
+            "title": title,
+            "author_id": author_id,
+            "genre_id": genre_id,
+            "isbn": isbn,
+            "publication_year": publication_year,
+            "copies": copies
+        }
+        for key, value in data.items():
+            if value is not None:
+                fields.append(f"{key} = %s")
+                values.append(value)
         if not fields:
-            print("ziadne udaje na aktualizaciu")
-            return
+            return 0
         values.append(book_id)
         query = "UPDATE books SET " + ', '.join(fields) + " WHERE book_id = %s"
         self.cursor.execute(query, tuple(values))
+        updated = self.cursor.rowcount
         self.conn.commit()
-        print(f"kniha s id {book_id} bola aktualizovana")
+        return updated
