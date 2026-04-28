@@ -1,10 +1,10 @@
 def show_message(akcia, rowcount):
     spravy = {
-        "add":    ("zaznam bol uspesne pridany", "zaznam sa nepodarilo pridat"),
-        "delete": ("zaznam bol uspesne vymazany", "zaznam s tymto ID neexistuje"),
-        "update": ("zaznam bol uspesne aktualizovany", "zaznam s tymto ID neexistuje"),
-        "borrow": ("kniha bola uspesne pozicana", "vypozicku sa nepodarilo vytvorit"),
-        "return": ("kniha bola uspesne vratena", "vypozicka s tymto ID neexistuje"),
+        "add":    ("zaznam bol pridany", "zaznam sa nepodarilo pridat"),
+        "delete": ("zaznam bol vymazany", "zaznam s tymto ID neexistuje"),
+        "update": ("zaznam bol aktualizovany", "zaznam s tymto ID neexistuje"),
+        "borrow": ("kniha bola pozicana", "knihu sa nepodarilo vypozicat"),
+        "return": ("kniha bola vratena", "vypozicka s tymto ID neexistuje"),
     }
     ok, fail = spravy[akcia]
     print(ok if rowcount else fail)

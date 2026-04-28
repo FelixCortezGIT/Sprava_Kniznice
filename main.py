@@ -17,6 +17,9 @@ book = Book(cursor, conn)
 member = Member(cursor, conn)
 loan = Loan(cursor, conn)
 
+cursor.execute("UPDATE loans SET return_date = CURRENT_TIMESTAMP() WHERE return_date IS NULL")
+conn.commit()
+
 try:
     while True:
         print("1 knihy")
