@@ -47,6 +47,5 @@ class Book:
         values.append(book_id)
         query = "UPDATE books SET " + ', '.join(fields) + " WHERE book_id = %s"
         self.cursor.execute(query, tuple(values))
-        updated = self.cursor.rowcount
         self.conn.commit()
-        return updated
+        return self.cursor.rowcount

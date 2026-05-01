@@ -16,9 +16,8 @@ class Loan:
                 INSERT INTO loans (book_id, member_id, due_date)
                 VALUES (%s, %s, %s)
             """, (book_id, member_id, due_date))
-            inserted = self.cursor.rowcount
             self.conn.commit()
-            return inserted
+            return True
         except Exception:
             self.conn.rollback()
             return False
